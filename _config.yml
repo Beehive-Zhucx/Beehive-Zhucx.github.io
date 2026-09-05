@@ -5,15 +5,15 @@
 # Site
 title: Hexo
 subtitle: ''
-description: ''
+description: 'A Hexo blog powered by ShokaX.'
 keywords:
 author: John Doe
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://localhost:4000
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -43,7 +43,7 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
+syntax_highlighter: false
 highlight:
   line_number: true
   auto_detect: false

@@ -1,0 +1,35 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build ShokaX theme and generate site",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$ErrorActionPreference = 'Stop'; Set-Location 'e:\\Git_WorkBook\\hexo-starter'; $backup = '.\\themes\\hexo-theme-shokaX-main-source-backup.zip'; Compress-Archive -Path '.\\themes\\hexo-theme-shokaX-main\\scripts\\*' -DestinationPath $backup -Force; & 'C:\\Program Files\\nodejs\\npm.cmd' install 'hexo-renderer-pug@^3.0.0'; Push-Location '.\\themes\\hexo-theme-shokaX-main'; & 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm@10.13.1 install; & 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm@10.13.1 run build; Pop-Location; & '.\\node_modules\\.bin\\hexo.cmd' clean; & '.\\node_modules\\.bin\\hexo.cmd' generate; if (-not (Select-String -Path '.\\public\\index.html' -Pattern '<!DOCTYPE html>' -Quiet)) { throw 'Generated homepage is not HTML.' }; Write-Host 'ShokaX build and Hexo generation completed successfully.'"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build ShokaX theme and generate site",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$ErrorActionPreference = 'Stop'; Set-Location 'e:\\Git_WorkBook\\hexo-starter'; $backup = '.\\themes\\hexo-theme-shokaX-main-source-backup.zip'; Compress-Archive -Path '.\\themes\\hexo-theme-shokaX-main\\scripts\\*' -DestinationPath $backup -Force; & 'C:\\Program Files\\nodejs\\npm.cmd' install 'hexo-renderer-pug@^3.0.0'; Push-Location '.\\themes\\hexo-theme-shokaX-main'; & 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm@10.13.1 install; & 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm@10.13.1 run build; Pop-Location; & '.\\node_modules\\.bin\\hexo.cmd' clean; & '.\\node_modules\\.bin\\hexo.cmd' generate; if (-not (Select-String -Path '.\\public\\index.html' -Pattern '<!DOCTYPE html>' -Quiet)) { throw 'Generated homepage is not HTML.' }; Write-Host 'ShokaX build and Hexo generation completed successfully.'"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
