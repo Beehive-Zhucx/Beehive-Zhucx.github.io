@@ -36,6 +36,28 @@ jobs:
       - name: Install root dependencies
         run: npm ci
 
+      - name: Restore ShokaX build sources
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          archive = Path("themes/hexo-theme-shokaX-main-source-backup.zip")
+          destination = Path("themes/hexo-theme-shokaX-main/scripts").resolve()
+
+          with ZipFile(archive) as source_archive:
+            for entry in source_archive.infolist():
+              relative_path = Path(entry.filename.replace("\\", "/"))
+              target = (destination / relative_path).resolve()
+              target.relative_to(destination)
+              if entry.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+              else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(source_archive.read(entry))
+          PY
+          test -f themes/hexo-theme-shokaX-main/scripts/generaters/index.ts
+
       - name: Build ShokaX theme
         working-directory: themes/hexo-theme-shokaX-main
         run: |
@@ -44,7 +66,10 @@ jobs:
           pnpm run build
 
       - name: Generate site
-        run: npm run build
+        run: |
+          npm run build
+          test -s public/index.html
+          test -s public/js/siteInit.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
