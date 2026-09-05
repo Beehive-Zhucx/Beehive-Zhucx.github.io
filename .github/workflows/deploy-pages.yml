@@ -27,6 +27,12 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Prepare ShokaX paths
+        run: |
+          ln -s hexo-theme-shokaX-main themes/hexo-theme-shokax-main
+          ln -s hexo-theme-shokaX-main themes/shokaX
+          mkdir -p source/_data/assets
+
       - name: Install root dependencies
         run: npm ci
 
@@ -36,11 +42,6 @@ jobs:
           corepack enable
           pnpm install --no-frozen-lockfile
           pnpm run build
-
-      - name: Prepare ShokaX paths
-        run: |
-          ln -s hexo-theme-shokaX-main themes/shokaX
-          mkdir -p source/_data/assets
 
       - name: Generate site
         run: npm run build
