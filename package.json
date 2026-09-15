@@ -12,7 +12,7 @@
     "version": "8.1.2"
   },
   "dependencies": {
-    "hana-img-viewer": "^5.2.0",
+    "hana-img-viewer": "^6.0.0",
     "hexo": "^8.0.0",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
